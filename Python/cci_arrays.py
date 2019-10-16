@@ -37,3 +37,26 @@ def urlify (string, string_length):
     print (urled)
 urlify("This is a Te3t   ", 1) 
 
+
+#Given a list of numbers, find if there exists a pythagorean triplet in that list. 
+# A pythagorean triplet is 3 variables a, b, c where a^2 + b^2 = c^2
+def findPythagoreanTriplets(nums):
+  nums_squared = [i ** 2 for i in nums]
+  nums_squared.sort() #sorting will help reduce time complexity
+  n = len(nums_squared)
+
+  for i in range(n-1, 1, -1):
+      x = 0 
+      y = i - 1
+      while (x < y):
+        if (nums_squared[x]+nums_squared[y] == nums_squared[i]):
+              return "Yes"
+        else:
+            if (nums_squared[x] + nums_squared[y] < nums_squared[i]):
+                x = x + 1
+            else:
+                y = y - 1 
+
+  return "No"
+test = [3, 12, 4, 13]
+print ("Given", test, "is there a Pythagorean Triple:", findPythagoreanTriplets(test)) #should run in O(n^2) time
